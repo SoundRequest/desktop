@@ -5,9 +5,10 @@ const path = require('path')
 let mainWindow
 function createWindow() {
   mainWindow = new electron.BrowserWindow({
-    width: 460,
-    height: 800,
-    minWidth: 460,
+    width: 1024,
+    height: 768,
+    minWidth: 1024,
+    minHeight: 768,
     //alwaysOnTop: true,
     center: true,
     //fullscreen: true,
@@ -18,8 +19,8 @@ function createWindow() {
       // 웹 애플리케이션을 데스크탑으로 모양만 바꾸려면 안 해도 되지만,
       // Node 환경처럼 사용하려면 (Node에서 제공되는 빌트인 패키지 사용 포함)
       // true 해야 합니다.
-      nodeIntegration: true,
-    },
+      nodeIntegration: true
+    }
   })
   // 3. and load the index.html of the app.
   if (isDev) {
