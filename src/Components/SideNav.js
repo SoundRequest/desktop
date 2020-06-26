@@ -1,9 +1,25 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faMusic, faThLarge, faColumns } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { faHome, faColumns } from "@fortawesome/free-solid-svg-icons";
+import { Link, withRouter } from "react-router-dom";
 
 class SideNav extends Component {
+  componentDidMount() {
+    console.log(this.props);
+  }
+  navList = [
+    {
+      name: "Home",
+      icon: faHome,
+      path: "/",
+    },
+    {
+      name: "Explorer",
+      icon: faColumns,
+      path: "/explorer",
+    },
+  ];
+
   render() {
     return (
       <div id="sideNav" className="p-4 pl-6 bg-white shadow-sm">
@@ -16,21 +32,22 @@ class SideNav extends Component {
           <div className="mt-1 text-sm text-gray-600">me@gangjun.dev</div>
         </div>
         <div className="mt-12">
-          <div className="flex flex-row">
-            <FontAwesomeIcon icon={faHome} className="text-xl my-auto" />
-            <Link to="/" className="ml-4">
-              Home
-            </Link>
-          </div>
-          <div className="flex flex-row mt-4">
-            <FontAwesomeIcon
-              icon={faColumns}
-              className="text-xl my-auto"
-            />
-            <Link to="/" className="ml-4">
-              Explorer
-            </Link>
-          </div>
+          {this.navList.map((item, index) => (
+            <div className="flex flex-row mb-4" key={index}>
+              <div
+                className={
+                  this.props.location.pathname == item.path
+                    ? "text-purple-600"
+                    : ""
+                }
+              >
+                <FontAwesomeIcon icon={item.icon} className="text-xl my-auto" />
+                <Link to={item.path} className="ml-4">
+                  {item.name}
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
         <div className="mt-8 text-gray-600 font-bold tracking-wider">
           MY MUSIC
@@ -41,4 +58,4 @@ class SideNav extends Component {
   }
 }
 
-export default SideNav;
+export default withRouter(SideNav);
