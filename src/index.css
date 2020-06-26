@@ -2,7 +2,6 @@
 
 #App {
     height: 100vh;
-    color: white;
     font-family: "Noto Sans KR", sans-seri;
 }
 
@@ -13,5 +12,5 @@
   top: 0; /* Stay at the top */
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
-  width: 20vw;
+  width: 240px;
 }
