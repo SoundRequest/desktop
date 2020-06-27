@@ -5,7 +5,6 @@ import { Link, withRouter } from 'react-router-dom'
 
 class SideNav extends Component {
   componentDidMount() {
-    console.log(this.props)
   }
   navList = [
     {
@@ -25,7 +24,7 @@ class SideNav extends Component {
       <div id='sideNav' className='p-4 pl-6 bg-white shadow-sm'>
         <div className='text-center'>
           <img
-            className='w-16 h-16 rounded-half mx-auto shadow-x'
+            className='w-16 h-16 rounded-full mx-auto shadow-xl'
             src='/logo.png'
             alt='logo'
           />

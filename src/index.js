@@ -7,21 +7,23 @@ import * as serviceWorker from './serviceWorker'
 
 import App from './Components/App.js'
 import Home from './pages/Home.js'
+import SignIn from './pages/SignIn.js'
 import Settings from './pages/Settings.js'
 
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import reduxThunk from 'redux-thunk'
 import reducers from './reducers'
+import AuthGuard from './Components/HOCs/authGuard'
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={createStore(reducers, {}, applyMiddleware(reduxThunk))}>
         <App>
-          <Route exact path='/' component={Home} />
-          <Route path='/home' component={Home} />
-          <Route path='/settings' component={Settings} />
+          <Route exact path='/' component={AuthGuard(Home)} />
+          <Route path='/signin' component={SignIn} />
+          <Route path='/settings' component={AuthGuard(Settings)} />
         </App>
       </Provider>
     </BrowserRouter>
