@@ -18,7 +18,11 @@ class SignIn extends React.Component {
               transform: 'translateY(-40%)',
               width: '100%'
             }}>
-            <img src='/imgs/intro.svg' className='w-64 h-64 mx-auto' />
+            <img
+              src='/imgs/intro.svg'
+              className='w-64 h-64 mx-auto'
+              alt='Intro'
+            />
             <div className='text-center text-xl'>
               SoundRequest에 가입하세요!
             </div>
@@ -45,7 +49,7 @@ class SignIn extends React.Component {
               <button
                 className='shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-4 px-6 rounded'
                 type='button'>
-                    로그인
+                로그인
               </button>
             </div>
           </div>

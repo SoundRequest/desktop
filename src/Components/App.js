@@ -4,7 +4,7 @@ import SideNav from './SideNav'
 
 class App extends Component {
   render() {
-    if (this.props.location.pathname == '/signin') {
+    if (this.props.location.pathname === '/signin') {
       return (
         <div id='App' className='bg-gray-10 0 text-gray-700'>
           {this.props.children}
