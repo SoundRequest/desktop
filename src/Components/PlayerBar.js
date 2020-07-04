@@ -23,7 +23,7 @@ class PlayerBar extends Component {
     return (
         <div id='playerBar'>
             <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="80" class="slider" id="player"/>
+                <input type="range" min="1" max="100" class="slider" id="player"/>
                 <p>Value: <span id="v"/></p>
             </div>
         </div>
