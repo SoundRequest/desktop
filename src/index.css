@@ -66,3 +66,26 @@
   background: #ffffff;
   cursor: pointer;
 }
+
+.card {
+  position: fixed;
+  margin-left: 99%;
+  width: 320px;
+  height: 500px;
+  background: linear-gradient(135deg, #FF5B94, #8441A4);
+  transition: 0.3s;
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0,0,0,0.5);
+  top: 50%;
+  transform: rotate(-5deg) translateY(-50%);
+}
+
+.card:hover {
+  transform: rotate(-10deg) translateY(-50%);
+  margin-left: 95%;
+}
+
+.card:active {
+  transform: translateY(-50%);
+  margin-left: 80%;
+}

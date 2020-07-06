@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import SideNav from './SideNav'
 import PlayerBar from './PlayerBar'
+import Lyrics from './Lyrics.js'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
       <div id='App' className='bg-gray-10 0 text-gray-700'>
         <PlayerBar />
         <SideNav />
+        <Lyrics />
         <div style={{ marginLeft: '240px' }}>{this.props.children}</div>
       </div>
     )
