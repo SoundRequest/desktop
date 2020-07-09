@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import SideNav from './SideNav'
-import PlayerBar from './PlayerBar'
-import Lyrics from './Lyrics.js'
+import PlayerBar from './Player/PlayerBar'
+import Lyrics from './Player/Lyrics.js'
 
 class App extends Component {
   render() {

@@ -6,8 +6,10 @@ import { Link, withRouter } from 'react-router-dom'
 class PlayerBar extends Component {
   componentDidMount() {
     var slider = document.getElementById("player");
-    var output = document.getElementById("v");
+    var output = document.getElementById("currentValue");
+    var target = document.getElementById("targetValue");
     output.innerHTML = slider.value;
+    target.innerHTML = '100'
 
     slider.oninput = function() {
         output.innerHTML = this.value;
@@ -21,12 +23,15 @@ class PlayerBar extends Component {
   }
   render() {
     return (
-        <div id='playerBar'>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="100" class="slider" id="player"/>
-                <p>Value: <span id="v"/></p>
-            </div>
+      <div id='playerBar'>
+        <div class='row'>
+          <div class='col'><span id='currentValue'/></div>
+          <div class='col slidecontainer'>
+            <input type='range' min='1' max='100' class='slider' id='player'/>
+          </div>
+          <div class='col'><span id='targetValue'/></div>
         </div>
+      </div>
     )
   }
 }
