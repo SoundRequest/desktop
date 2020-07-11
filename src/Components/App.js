@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+import * as actions from '../actions/player'
 import { withRouter } from 'react-router-dom'
 import SideNav from './SideNav'
+import ReactPlayer from 'react-player'
+import moment from 'moment'
 
 class App extends Component {
   render() {
-    if (this.props.location.pathname == '/signin') {
+    if (this.props.location.pathname === '/signin') {
       return (
         <div id='App' className='bg-gray-100 text-gray-700'>
           {this.props.children}

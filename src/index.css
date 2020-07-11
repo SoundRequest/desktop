@@ -1,11 +1,25 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
 #App {
-    height: 100vh;
-    font-family: "Noto Sans KR", sans-seri;
+  height: 100vh;
+  font-family: 'Noto Sans KR', sans-seri;
 }
 
-#sideNav{
+.row {
+  display: table;
+  margin: auto;
+  width: 90%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+}
+
+.col {
+  margin: auto;
+  display: table-cell;
+  text-align: center;
+}
+
+#sideNav {
   height: 100%; /* Full-height: remove this if you want "auto" height */
   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1; /* Stay on top */
@@ -13,4 +27,14 @@
   left: 0;
   overflow-x: hidden; /* Disable horizontal scroll */
   width: 240px;
+}
+
+#playerBar {
+  position: fixed;
+  bottom: 5%;
+  width: 600px;
+  height: 80px;
+  right: 5%;
+  border-radius: 25px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
 }
