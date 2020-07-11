@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class SignIn extends React.Component {
   state = {
@@ -24,7 +25,11 @@ class SignIn extends React.Component {
               alt='Intro'
             />
             <div className='text-center text-xl'>
-              SoundRequest에 가입하세요!
+              <Link to='/signup'>
+                SoundRequest 계정이 없나요?
+                <br />
+                여기를 눌러 지금 가입해보세요!
+              </Link>
             </div>
           </div>
         </div>

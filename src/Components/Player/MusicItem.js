@@ -9,9 +9,6 @@ class MusicItem extends Component {
     this.props.data.url = this.props.url;
     this.props.data.played = 0;
     this.props.updatePlayer(this.props.data);
-    //this.props.data.playing = true;
-    //this.props.data.url = this.props.url;
-    //this.props.updatePlayer(this.props.data);
   }
 
   render() {

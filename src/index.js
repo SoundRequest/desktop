@@ -21,19 +21,15 @@ ReactDOM.render(
     <BrowserRouter>
       <Provider store={createStore(reducers, {}, applyMiddleware(reduxThunk))}>
         <App>
-          
+          <Route exact path='/' component={AuthGuard(Home)} />
+          <Route path='/signin' component={SignIn} />
+          <Route path='/settings' component={AuthGuard(Settings)} />
         </App>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 )
-
-/*
-<Route exact path='/' component={AuthGuard(Home)} />
-<Route path='/signin' component={SignIn} />
-<Route path='/settings' component={AuthGuard(Settings)} />
-*/
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
