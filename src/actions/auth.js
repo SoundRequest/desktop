@@ -1,21 +1,32 @@
 import axios from 'axios'
-import { AUTH_SIGN_UP, AUTH_SIGN_OUT, AUTH_SIGN_IN, AUTH_ERROR } from './types'
+import {
+  AUTH_SIGN_UP,
+  AUTH_SIGN_OUT,
+  AUTH_SIGN_IN,
+  AUTH_ERROR,
+  AUTH_GET_INFO
+} from './types'
+import config from '../config'
 
-const backendUrl = 'http://localhost:3000'
+const backendUrl = config.baseurl
 
 export const signUp = (data) => {
   return async (dispatch) => {
     try {
-      const { email, password } = data
-      const res = await axios.post(backendUrl + '/users/signup', {
+      const { email, password, name } = data
+      const res = await axios.post(backendUrl + '/auth/signup', {
+        name,
         email,
         password
       })
 
-      dispatch({ type: AUTH_SIGN_UP, payload: res.data.token })
+      dispatch({
+        type: AUTH_SIGN_UP,
+        payload: { token: res.data.token, verified: false }
+      })
       localStorage.setItem('JWT_TOKEN', res.data.token)
     } catch (err) {
-      dispatch({ type: AUTH_ERROR, payload: 'Email is already in use' })
+      dispatch({ type: AUTH_ERROR, payload: '이메일이 이미 사용중입니다' })
     }
   }
 }
@@ -23,17 +34,19 @@ export const signUp = (data) => {
 export const signIn = (data) => {
   return async (dispatch) => {
     try {
-      const { email, password } = data
-      const res = await axios.post(backendUrl + '/users/signin', {
-        email,
+      const { name, password } = data
+      const res = await axios.post(backendUrl + '/auth/signin', {
+        name,
         password
       })
 
-      console.log(res.data.token)
-      dispatch({ type: AUTH_SIGN_IN, payload: res.data.token })
+      dispatch({
+        type: AUTH_SIGN_IN,
+        payload: { token: res.data.token, verified: res.data.verified }
+      })
       localStorage.setItem('JWT_TOKEN', res.data.token)
     } catch (err) {
-      dispatch({ type: AUTH_ERROR, payload: 'Email is already in use' })
+      dispatch({ type: AUTH_ERROR, payload: '유저정보가 일치하지 않습니다' })
     }
   }
 }
@@ -42,37 +55,41 @@ export const checkAuth = () => {
   return async (dispatch) => {
     try {
       const token = localStorage.getItem('JWT_TOKEN')
-      const res = await axios.post(
-        backendUrl + '/users/status',
-        {},
-        {
-          headers: {
-            Authorization: 'Bearer ' + token
-          }
+      const res = await axios.get(backendUrl + '/auth/status', {
+        headers: {
+          Authorization: 'Bearer ' + token
         }
-      )
+      })
 
-      dispatch({ type: AUTH_SIGN_IN, payload: token })
-    } catch (err) {}
+      dispatch({
+        type: AUTH_SIGN_IN,
+        payload: { token: token, verified: res.data.verified }
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
 
-// export const oauthFacebook = (data) => {
-//   return async (dispatch) => {
-//     try {
-//       console.log("[ActionCreator] oauthFacebook called!");
-//       const { token } = data;
-//       const res = await axios.post(backendUrl + "/users/oauth/facebook", {
-//         access_token: token,
-//       });
-//       console.log("[ActionCreator] oauthFacebook dispatched an action!");
-//       dispatch({ type: AUTH_SIGN_UP, payload: res.data.token });
-//       localStorage.setItem("JWT_TOKEN", res.data.token);
-//     } catch (error) {
-//       dispatch({ type: AUTH_ERROR, payload: "Error While Processing" });
-//     }
-//   };
-// };
+export const getInfo = () => {
+  return async (dispatch) => {
+    try {
+      const token = localStorage.getItem('JWT_TOKEN')
+      const res = await axios.get(backendUrl + '/auth/profile', {
+        headers: {
+          Authorization: 'Bearer ' + token
+        }
+      })
+
+      dispatch({
+        type: AUTH_GET_INFO,
+        payload: { ...res.data, token: token }
+      })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
 
 export const signOut = () => {
   return (dispatch) => {

@@ -5,9 +5,9 @@ const path = require('path')
 let mainWindow
 function createWindow() {
   mainWindow = new electron.BrowserWindow({
-    width: 1024,
+    width: 1366,
     height: 768,
-    minWidth: 1024,
+    minWidth: 1366,
     minHeight: 768,
     //alwaysOnTop: true,
     center: true,

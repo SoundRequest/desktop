@@ -1,23 +1,42 @@
-import { AUTH_SIGN_UP, AUTH_ERROR, AUTH_SIGN_OUT } from '../actions/types'
+import {
+  AUTH_SIGN_UP,
+  AUTH_SIGN_IN,
+  AUTH_ERROR,
+  AUTH_SIGN_OUT,
+  AUTH_GET_INFO
+} from '../actions/types'
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
+  verified: false,
   token: '',
-  errorMessage: ''
+  errorMessage: '',
+  info: {
+    name: '',
+    email: '',
+    dark: false
+  }
 }
 
 export default (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case AUTH_SIGN_UP:
-      console.log('[ActionReducer] got an AUTH_SIGN_UP action!')
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
         isAuthenticated: true,
+        verified: action.payload.verified,
+        errorMessage: ''
+      }
+    case AUTH_SIGN_IN:
+      return {
+        ...state,
+        token: action.payload.token,
+        isAuthenticated: true,
+        verified: action.payload.verified,
         errorMessage: ''
       }
     case AUTH_ERROR:
-      console.log('[ActionReducer] got an AUTH_ERROR action!')
       return {
         ...state,
         errorMessage: action.payload
@@ -27,9 +46,18 @@ export default (state = DEFAULT_STATE, action) => {
         ...state,
         token: action.payload,
         isAuthenticated: false,
+        verified: false,
         errorMessage: ''
       }
-
+    case AUTH_GET_INFO:
+      return {
+        ...state,
+        info: {
+          ...state.info,
+          name: action.payload.name,
+          email: action.payload.email
+        }
+      }
     default:
       return state
   }

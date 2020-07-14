@@ -3,6 +3,27 @@
 #App {
   height: 100vh;
   font-family: 'Noto Sans KR', sans-seri;
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+
+body {
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+
+.blur {
+  filter: blur(4px);
+}
+
+.blurAnimation{
+  transition: "filter 400ms ease"
 }
 
 .row {
