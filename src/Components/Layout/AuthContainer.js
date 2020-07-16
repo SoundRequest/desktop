@@ -5,7 +5,7 @@ export default ({ children, text1, text2, onClick }) => {
   return (
     <div className='flex h-full'>
       <div
-        className='w-1/2 h-full bg-white shadow-sm'
+        className='w-1/2 h-full bg-white shadow-lg'
         style={{ position: 'relative' }}>
         <div
           className=''
@@ -21,13 +21,19 @@ export default ({ children, text1, text2, onClick }) => {
             alt='Intro'
           />
           <div className='text-center text-xl'>
-            <div style={{cursor: "pointer", whiteSpace: 'pre-wrap'}} onClick={onClick}>
-              {text1}{"\n"}{text2}
+            <div
+              style={{ cursor: 'pointer', whiteSpace: 'pre-wrap' }}
+              onClick={onClick}>
+              {text1}
+              {'\n'}
+              {text2}
             </div>
           </div>
         </div>
       </div>
-      <form className='w-1/2 px-16' style={{ position: 'relative' }}>
+      <form
+        className='w-1/2 px-16 bg-gray-100'
+        style={{ position: 'relative' }}>
         <div
           style={{
             position: 'absolute',

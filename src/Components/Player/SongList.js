@@ -42,14 +42,25 @@ const customStyles = {
 }
 
 class SongList extends React.Component {
-  state = { list: [] }
+  state = { list: [], url: '' }
   async componentDidMount() {
-    const res = await Axios.get(`${config.baseurl}${this.props.url}`, {
+    this.loadSong(this.props.url)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.state.url !== nextProps.url) {
+      this.loadSong(nextProps.url)
+    }
+  }
+
+  loadSong = async (url) => {
+    const res = await Axios.get(`${config.baseurl}${url}`, {
       headers: {
         Authorization: 'Bearer ' + this.props.token
       }
     })
-    this.setState({ list: res.data.list })
+    console.log('loaded ', url)
+    this.setState({ list: res.data.list, url: url })
   }
 
   handlePlaySong = (link, name, ID) => {
@@ -69,8 +80,8 @@ class SongList extends React.Component {
           style={{ cursor: 'pointer' }}>
           {row.Name}
         </div>
-      ),
-      sortable: true
+      )
+      // sortable: true
     },
     {
       name: '설명',

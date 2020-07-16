@@ -1,14 +1,14 @@
-const electron = require('electron')
+const { electron, app, globalShortcut } = require('electron')
 const isDev = require('electron-is-dev')
 const path = require('path')
 // 1. Gabage Collection이 일어나지 않도록 함수 밖에 선언함.
 let mainWindow
 function createWindow() {
   mainWindow = new electron.BrowserWindow({
-    width: 1366,
-    height: 768,
-    minWidth: 1366,
-    minHeight: 768,
+    width: 1456,
+    height: 819,
+    minWidth: 1456,
+    minHeight: 819,
     //alwaysOnTop: true,
     center: true,
     //fullscreen: true,
@@ -50,4 +50,19 @@ electron.app.on('activate', function () {
   if (mainWindow === null) {
     createWindow()
   }
+})
+
+electron.app.whenReady().then(() => {
+  globalShortcut.register('Alt+J', () => {
+    console.log('Alt+J is pressed')
+    console.log('This should be key for previous song')
+  })
+  globalShortcut.register('Alt+K', () => {
+    console.log('Alt+K is pressed')
+    console.log('This should be key for next song')
+  })
+  globalShortcut.register('Alt+S', () => {
+    console.log('Alt+S is pressed')
+    console.log('This should be key for toggle play or stop song')
+  })
 })

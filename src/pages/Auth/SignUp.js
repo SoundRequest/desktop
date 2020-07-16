@@ -85,6 +85,7 @@ class SignUp extends React.Component {
             placeholder='비밀번호 확인'
             value={this.state.passwordConfirm}
             onChange={(e) => this.setState({ passwordConfirm: e.target.value })}
+            onKeyDown={(e) => e.keyCode === 13 && this.onFinish()}
           />
         </div>
         {this.state.errorMsg ? (

@@ -60,9 +60,10 @@ class PlayerBar extends Component {
   }
 
   handleBack = () => {
-    const index = this.props.list.findIndex((i) => i.ID === this.props.songID)-1
+    const index =
+      this.props.list.findIndex((i) => i.ID === this.props.songID) - 1
     if (index < 0) {
-      alert('첫번째 향목입니다')
+      //alert('첫번째 향목입니다')
       return
     }
     let listItem = this.props.list[index]
@@ -70,9 +71,10 @@ class PlayerBar extends Component {
   }
 
   handleForward = () => {
-    const index = this.props.list.findIndex((i) => i.ID === this.props.songID)+1
+    const index =
+      this.props.list.findIndex((i) => i.ID === this.props.songID) + 1
     if (index >= this.props.list.length) {
-      alert('마지막 향목입니다')
+      //alert('마지막 향목입니다')
       return
     }
     let listItem = this.props.list[index]

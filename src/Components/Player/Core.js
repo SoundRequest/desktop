@@ -18,7 +18,7 @@ class PlayerCore extends React.Component {
     const index =
       this.props.list.findIndex((i) => i.ID === this.props.songID) + 1
     if (index >= this.props.list.length) {
-      alert('마지막 향목입니다')
+      //alert('마지막 향목입니다')
       return
     }
     let listItem = this.props.list[index]
@@ -38,9 +38,7 @@ class PlayerCore extends React.Component {
         onEnded={this.handleOnEnd}
         onProgress={this.handleProgress}
         style={{
-          position: 'fixed',
-          top: 0,
-          right: 0,
+          position: 'relative',
           disabled: true,
           // pointerEvents: 'none',
           width: '640px'

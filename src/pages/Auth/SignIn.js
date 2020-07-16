@@ -54,6 +54,7 @@ class SignIn extends React.Component {
             placeholder='비밀번호'
             value={this.state.password}
             onChange={(e) => this.setState({ password: e.target.value })}
+            onKeyDown={(e) => e.keyCode == 13 && this.onFinish()}
           />
         </div>
         <div className='mb-6 text-center'>

@@ -15,15 +15,23 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("DETAIL!")
-    const query = queryString.parse(this.props.location.search)
+    this.setData(this.props)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setData(nextProps)
+  }
+
+  setData = (data) => {
+    this.setState({ loading: true })
+    const query = queryString.parse(data.location.search)
     const id = parseInt(query.id)
-    const index = this.props.playList.findIndex((i) => i.ID === id)
+    const index = data.playList.findIndex((i) => i.ID === id)
     if (index < 0) {
-      this.props.history.push('/')
+      data.history.push('/')
       return
     }
-    this.setState({ info: this.props.playList[index], loading: false })
+    this.setState({ info: data.playList[index], loading: false })
   }
 
   render() {

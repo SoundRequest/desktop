@@ -7,7 +7,6 @@ import * as actions_modal from 'src/actions/modal'
 import { withRouter } from 'react-router-dom'
 import SideNav from './Nav/SideNav'
 import RightNav from './Nav/RightNav'
-import PlayerCore from './Player/Core'
 import PlayerBar from './Player/PlayerBar'
 import AddSong from './Modal/AddSong'
 import EditSong from './Modal/EditSong'
@@ -27,8 +26,8 @@ class App extends Component {
 
   async componentDidMount() {
     await this.props.checkAuth()
-    await this.props.getInfo()
-    await this.props.setPlayList(this.props.token)
+    if (this.props.isAuth) await this.props.getInfo()
+    if (this.props.isAuth) await this.props.setPlayList(this.props.token)
     this.setState({ loading: false })
   }
 
@@ -64,7 +63,6 @@ class App extends Component {
           transition: 'filter 200ms ease'
         }}>
         <HotKey />
-        <PlayerCore />
         <PlayerBar />
         <SideNav data={this.props.auth.info} />
         <AddSong

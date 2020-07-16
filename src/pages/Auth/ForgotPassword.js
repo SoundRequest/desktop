@@ -32,6 +32,7 @@ class ForgotPassword extends React.Component {
             placeholder='이메일'
             value={this.state.email}
             onChange={(e) => this.setState({ email: e.target.value })}
+            onKeyDown={(e) => e.keyCode === 13 && this.onFinish}
           />
         </div>
         <div className='md:flex md:items-center'>
@@ -58,7 +59,11 @@ class ForgotPassword extends React.Component {
           <Input type='text' placeholder='새 비밀번호' />
         </div>
         <div className='md:flex md:items-center my-6 '>
-          <Input type='text' placeholder='새 비밀번호 확인' />
+          <Input
+            type='text'
+            placeholder='새 비밀번호 확인'
+            onKeyDown={(e) => e.keyCode === 13 && this.onFinish()}
+          />
         </div>
         <div className='mb-6 text-center'>
           <span
