@@ -22,8 +22,8 @@ body {
   filter: blur(4px);
 }
 
-.blurAnimation{
-  transition: "filter 400ms ease"
+.blurAnimation {
+  transition: 'filter 400ms ease';
 }
 
 .row {
@@ -58,4 +58,14 @@ body {
   right: 5%;
   border-radius: 25px;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.listContainer {
+  height: 70vh;
+  overflow-x: hidden !important;
+  overflow-y: scroll !important;
+}
+
+.listContainer::-webkit-scrollbar {
+  display: none;
 }

@@ -132,6 +132,7 @@ class SongList extends React.Component {
       <div>
         <DataTable
           title='SongList'
+          className="listContainer"
           columns={this.columns}
           customStyles={customStyles}
           data={this.state.list}
