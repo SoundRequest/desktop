@@ -49,7 +49,7 @@ class Chart extends Component {
       selector: 'Count',
       cell: (row) => <p>{(row.Count + 1).toString()}</p>,
       sortable: true,
-      width: '60px'
+      width: '120px'
     },
     {
       name: '이름',
@@ -57,8 +57,14 @@ class Chart extends Component {
       sortable: true
     },
     {
-      name: '설명',
-      selector: 'Artist'
+      name: '아티스트',
+      selector: 'Artist',
+      sortable: true
+    },
+    {
+      name: '앨범',
+      selector: 'Album',
+      sortable: true
     }
   ]
 

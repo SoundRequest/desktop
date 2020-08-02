@@ -2,6 +2,8 @@ import React from 'react'
 import Input from 'src/components/FormItem/Input'
 import AuthContainer from 'src/components/Layout/AuthContainer'
 import { withRouter } from 'react-router-dom'
+import config from 'src/config.json'
+import axios from 'axios'
 
 class ForgotPassword extends React.Component {
   state = {
@@ -13,7 +15,14 @@ class ForgotPassword extends React.Component {
   }
 
   handleSendCode = () => {
-    // TODO: 백엔드 연결
+    axios.post(`${config.baseurl}/auth/recoverPasswordVerifyCode`, {
+      Email: this.state.email
+    }).catch(e => {
+      alert("요청도중 에러가 발생하였습니다.")
+      this.setState({ showNext: false })
+      return
+    })
+
     this.setState({ showNext: true })
   }
 
@@ -32,8 +41,15 @@ class ForgotPassword extends React.Component {
             placeholder='이메일'
             value={this.state.email}
             onChange={(e) => this.setState({ email: e.target.value })}
-            onKeyDown={(e) => e.keyCode === 13 && this.onFinish}
+            onKeyDown={(e) => e.keyCode === 13 && this.handleSendCode()}
           />
+        </div>
+        <div className='mb-6 text-center'>
+          <span
+            className='text-md text-gray-600 hover:text-gray-800 cursor-pointer border-b-2 border-dashed'
+            onClick={() => this.setState({ showNext: true })}>
+            이미 인증번호가 있으신가요?
+          </span>
         </div>
         <div className='md:flex md:items-center'>
           <div className='mx-auto'>
@@ -62,7 +78,7 @@ class ForgotPassword extends React.Component {
           <Input
             type='text'
             placeholder='새 비밀번호 확인'
-            onKeyDown={(e) => e.keyCode === 13 && this.onFinish()}
+            onKeyDown={(e) => e.keyCode === 13 && this.handleSendCode()}
           />
         </div>
         <div className='mb-6 text-center'>

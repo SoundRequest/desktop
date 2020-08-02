@@ -4,8 +4,11 @@ import {
   PLAYER_SET_VOLUME,
   PLAYER_SET_LIST,
   PLAYER_SET_DURATION,
-  PLAYER_SET_PLAYLIST
+  PLAYER_SET_PLAYLIST,
+  PLAYER_SET_PROGRESS,
+  PLAYER_SEEKTO
 } from '../actions/types'
+import { act } from 'react-dom/test-utils'
 
 const DEFAULT_STATE = {
   songID: '',
@@ -14,15 +17,14 @@ const DEFAULT_STATE = {
   loop: false,
   name: '',
   volume: 0.5, //0~1
-  duration: {
-    loaded: 0,
-    loadedSeconds: 0,
-    played: 0,
-    playedSeconds: 0
-  },
+  loaded: 0,
+  loadedSeconds: 0,
+  played: 0,
+  playedSeconds: 0,
   list: [],
   listname: '',
-  playList: []
+  playList: [],
+  seekTo: 0
 }
 
 export default (state = DEFAULT_STATE, action) => {
@@ -48,9 +50,12 @@ export default (state = DEFAULT_STATE, action) => {
     case PLAYER_SET_DURATION:
       return {
         ...state,
-        duration: {
-          ...action.payload
-        }
+        duration: action.payload.duration
+      }
+    case PLAYER_SET_PROGRESS:
+      return {
+        ...state,
+        ...action.payload
       }
     case PLAYER_SET_LIST:
       return {
@@ -62,6 +67,11 @@ export default (state = DEFAULT_STATE, action) => {
       return {
         ...state,
         playList: action.payload.list
+      }
+    case PLAYER_SEEKTO:
+      return {
+        ...state,
+        seekTo: action.payload.seekTo
       }
     default:
       return state

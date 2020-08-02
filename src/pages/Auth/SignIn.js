@@ -29,6 +29,7 @@ class SignIn extends React.Component {
         this.setState({ errorMsg: this.props.errorMsg })
       } else {
         this.props.history.push('/')
+        window.location.reload()
       }
     }
   }
@@ -69,8 +70,8 @@ class SignIn extends React.Component {
             {this.state.errorMsg}
           </div>
         ) : (
-          <div className='h-4'></div>
-        )}
+            <div className='h-4'></div>
+          )}
         <div className='md:flex md:items-center'>
           <div className='mx-auto'>
             <button

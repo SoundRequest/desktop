@@ -7,6 +7,7 @@ import * as actions_modal from 'src/actions/modal'
 import { withRouter } from 'react-router-dom'
 import SideNav from './Nav/SideNav'
 import RightNav from './Nav/RightNav'
+import PlayerCore from './Player/Core'
 import PlayerBar from './Player/PlayerBar'
 import AddSong from './Modal/AddSong'
 import EditSong from './Modal/EditSong'
@@ -88,12 +89,10 @@ class App extends Component {
           info={this.props.modal.movePlaylistInfo}
           playlist={this.props.playlist}
         />
-        <div
-          style={{ marginLeft: '252px' }}
-          className='flex flex-row-reverse h-full'>
-          <RightNav style={{ width: '640px' }} />
+        <div style={{ marginLeft: '252px' }} className='flex flex-row-reverse'>
           <div className='flex-grow'>{this.props.children}</div>
         </div>
+        {/* <PlayerCore /> */}
       </div>
     )
   }
